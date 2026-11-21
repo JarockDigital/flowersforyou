@@ -268,6 +268,35 @@
   border-color: var(--color-midnight);
 }
 
+.letter-scroll-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+  opacity: 0.85;
+}
+
+.letter-scroll-hint.is-visible {
+  display: flex;
+}
+
+@media (max-width: 900px) {
+  .letter-scroll-viewport {
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+
+  .letter-scroll-hint.is-visible {
+    display: none;
+  }
+}
+
 @media (max-width: 540px) {
   .letter-controls {
     flex-wrap: wrap;

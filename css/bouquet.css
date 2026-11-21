@@ -293,8 +293,8 @@
     bottom: auto;
     left: auto;
     width: 100%;
-    height: min(44dvh, 360px);
-    padding: 0.5rem var(--gutter) 0;
+    height: clamp(220px, 34svh, 285px);
+    padding: 0.25rem var(--gutter) 0;
     margin: 0 auto;
   }
 
@@ -303,15 +303,17 @@
   }
 
   .bouquet-canvas-mount {
-    max-width: 300px;
+    width: auto;
+    max-width: 260px;
     height: 100%;
   }
 
   .discovery-layout {
     grid-template-columns: 1fr;
     align-content: start;
-    gap: 1rem;
-    padding-top: 0.5rem;
+    min-height: auto;
+    gap: 0.85rem;
+    padding-top: 0.25rem;
   }
 
   .discovery-panel-column {

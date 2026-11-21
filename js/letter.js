@@ -27,6 +27,7 @@
 
       this.sheetEl = document.getElementById('letter-sheet');
       this.viewportEl = document.getElementById('letter-scroll-viewport');
+      this.scrollHintEl = document.getElementById('letter-scroll-hint');
       this.containerEl = document.getElementById('letter-sections-container');
       this.indicatorsEl = document.getElementById('letter-section-indicators');
       this.statusEl = document.getElementById('letter-status-text');
@@ -129,6 +130,19 @@
           this.updateView({ announce: true });
         });
       }
+
+      if (this.viewportEl) {
+        this.viewportEl.addEventListener('scroll', () => this.updateScrollHint());
+      }
+      window.addEventListener('resize', () => this.updateScrollHint());
+    }
+
+    updateScrollHint() {
+      if (!this.viewportEl || !this.scrollHintEl) return;
+      const hasOverflow = this.viewportEl.scrollHeight - this.viewportEl.clientHeight > 8;
+      const atBottom =
+        this.viewportEl.scrollTop + this.viewportEl.clientHeight >= this.viewportEl.scrollHeight - 8;
+      this.scrollHintEl.classList.toggle('is-visible', hasOverflow && !atBottom);
     }
 
     reset() {
@@ -225,6 +239,8 @@
           this.onAnnounce(`Reading section ${this.currentIndex + 1} of ${total}.`);
         }
       }
+
+      window.requestAnimationFrame(() => this.updateScrollHint());
     }
   }
 
