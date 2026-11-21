@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 300" fill="none">
+  <defs>
+    <radialGradient id="delphOuter" cx="42%" cy="35%" r="68%">
+      <stop offset="0%" stop-color="#D4E4F2"/>
+      <stop offset="55%" stop-color="#98B8D4"/>
+      <stop offset="100%" stop-color="#5E82A6"/>
+    </radialGradient>
+    <radialGradient id="delphInner" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#F5F0E7"/>
+      <stop offset="65%" stop-color="#BDA477"/>
+      <stop offset="100%" stop-color="#537291"/>
+    </radialGradient>
+    <g id="delph-floret">
+      <ellipse cx="0" cy="-16" rx="9" ry="14" fill="url(#delphOuter)" stroke="#537596" stroke-width="0.6"/>
+      <ellipse cx="15" cy="-5" rx="9" ry="14" transform="rotate(72)" fill="url(#delphOuter)" stroke="#537596" stroke-width="0.6"/>
+      <ellipse cx="9" cy="13" rx="9" ry="14" transform="rotate(144)" fill="url(#delphOuter)" stroke="#537596" stroke-width="0.6"/>
+      <ellipse cx="-9" cy="13" rx="9" ry="14" transform="rotate(216)" fill="url(#delphOuter)" stroke="#537596" stroke-width="0.6"/>
+      <ellipse cx="-15" cy="-5" rx="9" ry="14" transform="rotate(288)" fill="url(#delphOuter)" stroke="#537596" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="5.5" fill="url(#delphInner)"/>
+      <circle cx="0" cy="0" r="2.2" fill="#F5F0E7"/>
+    </g>
+  </defs>
+  <path d="M92 292 C90 220, 88 135, 92 24" stroke="#6E8272" stroke-width="2.8" stroke-linecap="round"/>
+  <ellipse cx="92" cy="22" rx="4.5" ry="9" fill="#9BBAD4"/>
+  <ellipse cx="83" cy="40" rx="5.5" ry="10" transform="rotate(-18 83 40)" fill="#A7C4DC"/>
+  <ellipse cx="101" cy="46" rx="5.5" ry="10" transform="rotate(18 101 46)" fill="#A7C4DC"/>
+  <use href="#delph-floret" transform="translate(91, 68) scale(0.68)"/>
+  <use href="#delph-floret" transform="translate(76, 94) rotate(-14) scale(0.8)"/>
+  <use href="#delph-floret" transform="translate(106, 102) rotate(16) scale(0.82)"/>
+  <use href="#delph-floret" transform="translate(90, 126) rotate(6) scale(0.92)"/>
+  <use href="#delph-floret" transform="translate(70, 152) rotate(-18) scale(0.96)"/>
+  <use href="#delph-floret" transform="translate(110, 158) rotate(20) scale(0.96)"/>
+  <use href="#delph-floret" transform="translate(90, 184) rotate(-8) scale(1.04)"/>
+  <use href="#delph-floret" transform="translate(68, 212) rotate(-12) scale(1.02)"/>
+  <use href="#delph-floret" transform="translate(112, 216) rotate(14) scale(1.02)"/>
+  <use href="#delph-floret" transform="translate(90, 240) rotate(5) scale(1.06)"/>
+</svg>

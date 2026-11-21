@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101C2C" />
+  <meta name="description" content="A little something for you, an interactive digital floral arrangement and personal letter." />
+  <title>A Little Something for You</title>
+
+  <!-- Editorial Typography: Cormorant Garamond, Inter & restrained Caveat accent -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/bouquet.css" />
+  <link rel="stylesheet" href="css/letter.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body data-scene="1" data-theme="midnight">
+  <a href="#main-stage" class="skip-link">Skip to content</a>
+
+  <!-- Screen-reader live region for scene & flower updates -->
+  <div id="scene-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Atmospheric Lighting, Tactile Grain & Botanical Corner Accents -->
+  <div class="environment-backdrop" aria-hidden="true">
+    <div class="environment-spotlight" id="environment-spotlight"></div>
+    <div class="environment-grain"></div>
+    <img class="stage-corner-flora stage-corner-flora--tl" src="assets/botanical/eucalyptus-branch.svg" alt="" />
+    <img class="stage-corner-flora stage-corner-flora--br" src="assets/flowers/forget-me-not.svg" alt="" />
+  </div>
+
+  <!-- Discreet Architectural Scene Progress Bar -->
+  <header class="editorial-nav" aria-label="Experience chapters">
+    <nav class="chapter-track" aria-label="Chapter navigation">
+      <button type="button" class="chapter-step is-active" data-goto-scene="1" aria-current="step">
+        <span class="chapter-rule" aria-hidden="true"></span>
+        <span class="chapter-label">Arrival</span>
+      </button>
+      <button type="button" class="chapter-step" data-goto-scene="2">
+        <span class="chapter-rule" aria-hidden="true"></span>
+        <span class="chapter-label">Bouquet</span>
+      </button>
+      <button type="button" class="chapter-step" data-goto-scene="3">
+        <span class="chapter-rule" aria-hidden="true"></span>
+        <span class="chapter-label">Blooms</span>
+      </button>
+      <button type="button" class="chapter-step" data-goto-scene="4">
+        <span class="chapter-rule" aria-hidden="true"></span>
+        <span class="chapter-label">Letter</span>
+      </button>
+      <button type="button" class="chapter-step" data-goto-scene="5">
+        <span class="chapter-rule" aria-hidden="true"></span>
+        <span class="chapter-label">Keepsake</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main-stage" class="stage">
+    <!-- ===================================================================
+         PERSISTENT BOTANICAL STAGE (Shared seamlessly across Scenes 2, 3 & 5)
+         =================================================================== -->
+    <div id="bouquet-theater" class="bouquet-theater" aria-hidden="true">
+      <div id="bouquet-canvas-mount" class="bouquet-canvas-mount"></div>
+    </div>
+
+    <!-- ===================================================================
+         SCENE 1: THE ARRIVAL
+         =================================================================== -->
+    <section id="scene-1" class="scene scene-arrival is-active" aria-labelledby="arrival-heading">
+      <div class="arrival-layout">
+        <div class="arrival-copy" id="arrival-copy">
+          <p class="handwritten-note" aria-hidden="true">For you, quietly</p>
+          <h1 id="arrival-heading" class="editorial-display">A little something for you.</h1>
+        </div>
+
+        <div class="envelope-stage" id="envelope-stage">
+          <!-- Single delicate botanical sprig resting beside the envelope -->
+          <div class="arrival-sprig" id="arrival-sprig" aria-hidden="true">
+            <img src="assets/flowers/single-sprig.svg" alt="" width="180" height="240" />
+          </div>
+
+          <!-- Tactile Ivory Envelope with True 3D Unfolding Flap & Emerging Bouquet Crest -->
+          <div
+            id="arrival-envelope"
+            class="envelope-object"
+            role="button"
+            tabindex="0"
+            aria-label="Ivory envelope sealed with blue wax. Activate to open your gift."
+          >
+            <!-- Layer 1: Back Panel & Deep Navy Liner -->
+            <div class="envelope-back"></div>
+            <div class="envelope-inner-liner"></div>
+
+            <!-- Layer 2 (z-index 5 closed -> z-index 1 once past 90deg): Hinged Top Flap -->
+            <div class="envelope-flap" id="envelope-flap">
+              <div class="envelope-flap-front"></div>
+              <div class="envelope-flap-back"></div>
+            </div>
+
+            <!-- Layer 3 (z-index 3): Folded Floral Keepsake Rising Out of Pocket -->
+            <div class="envelope-emerging-bloom" id="envelope-emerging-bloom" aria-hidden="true">
+              <img src="assets/flowers/blue-hydrangea.svg" alt="" width="140" height="140" />
+            </div>
+
+            <!-- Layer 4 (z-index 4): Front Ivory Pockets -->
+            <div class="envelope-pocket-left"></div>
+            <div class="envelope-pocket-right"></div>
+            <div class="envelope-pocket-bottom"></div>
+
+            <!-- Layer 5 (z-index 6): Blue Wax Seal -->
+            <div class="wax-seal-wrapper" id="wax-seal">
+              <img src="assets/botanical/wax-seal.svg" alt="" width="112" height="112" />
+            </div>
+          </div>
+        </div>
+
+        <div class="arrival-action" id="arrival-action">
+          <button type="button" id="btn-open-gift" class="btn-editorial">
+            Open your gift
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SCENE 2: THE BOUQUET REVEAL
+         =================================================================== -->
+    <section id="scene-2" class="scene scene-bouquet" aria-labelledby="bouquet-heading" hidden>
+      <div class="bouquet-editorial-layout">
+        <div class="bouquet-copy-block" id="scene-2-copy">
+          <p class="editorial-eyebrow">For everything you’ve been carrying…</p>
+          <h2 id="bouquet-heading" class="editorial-heading">You deserve something beautiful, too.</h2>
+          <p class="editorial-subcopy">
+            Each stem in this arrangement was chosen for a quiet reason. Tap or select any bloom to discover what it holds.
+          </p>
+          <div class="scene-actions">
+            <button type="button" id="btn-explore-flowers" class="btn-editorial">
+              Discover each flower
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SCENE 3: FLOWER DISCOVERY
+         =================================================================== -->
+    <section id="scene-3" class="scene scene-discovery" aria-labelledby="discovery-heading" hidden>
+      <div class="discovery-layout">
+        <div class="discovery-panel-column">
+          <header class="discovery-header">
+            <p class="handwritten-note">Language of the blooms</p>
+            <h2 id="discovery-heading" class="editorial-subheading">Tap each flower to read its meaning</h2>
+          </header>
+
+          <!-- Accessible tactile selector tabs synced with direct SVG flower clicks -->
+          <div class="flower-selector-bar" role="tablist" aria-label="Flowers in your bouquet">
+            <button
+              type="button"
+              role="tab"
+              class="flower-tab is-selected is-explored"
+              data-flower-select="hydrangea"
+              aria-selected="true"
+              aria-controls="flower-detail-panel"
+            >
+              Blue Hydrangea
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="flower-tab"
+              data-flower-select="rose"
+              aria-selected="false"
+              aria-controls="flower-detail-panel"
+            >
+              White Garden Rose
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="flower-tab"
+              data-flower-select="forgetmenot"
+              aria-selected="false"
+              aria-controls="flower-detail-panel"
+            >
+              Forget-Me-Not
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="flower-tab"
+              data-flower-select="delphinium"
+              aria-selected="false"
+              aria-controls="flower-detail-panel"
+            >
+              Blue Delphinium
+            </button>
+          </div>
+
+          <!-- Solid, opaque warm-ivory editorial botanical card -->
+          <article id="flower-detail-panel" class="flower-meaning-card" role="tabpanel">
+            <img class="card-corner-bloom" src="assets/flowers/single-sprig.svg" alt="" aria-hidden="true" />
+            <div class="flower-card-meta">
+              <span class="flower-card-meaning-tag" id="flower-meaning-label">Appreciation</span>
+              <span class="flower-card-counter" id="flower-discovery-count">1 of 4 blooms explored</span>
+            </div>
+            <h3 class="flower-card-title" id="flower-title">Blue Hydrangea</h3>
+            <div class="flower-card-divider" aria-hidden="true"></div>
+            <p class="flower-card-message" id="flower-message">
+              You notice when people are struggling and step in before anyone has to ask. Most of that effort goes unseen. This bloom is here because I see how much you give, and I’m grateful for every bit of it.
+            </p>
+          </article>
+
+          <div class="discovery-footer-actions">
+            <button type="button" id="btn-to-letter" class="btn-editorial" disabled>
+              Explore all 4 blooms first (3 left)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SCENE 4: THE LETTER
+         =================================================================== -->
+    <section id="scene-4" class="scene scene-letter" aria-labelledby="letter-scene-heading" hidden>
+      <div class="letter-environment">
+        <div class="letter-top-bar">
+          <h2 id="letter-scene-heading" class="sr-only">Personal Letter</h2>
+          <button
+            type="button"
+            id="btn-toggle-letter-mode"
+            class="btn-text-link"
+            aria-pressed="false"
+          >
+            Read all sections together
+          </button>
+        </div>
+
+        <!-- 3D Folded Stationery Sheet -->
+        <div class="letter-perspective-wrap">
+          <article id="letter-sheet" class="letter-sheet" aria-label="Personal letter">
+            <img class="letter-corner-flora letter-corner-flora--tl" src="assets/flowers/forget-me-not.svg" alt="" aria-hidden="true" />
+            <img class="letter-corner-flora letter-corner-flora--br" src="assets/botanical/ruscus-foliage.svg" alt="" aria-hidden="true" />
+            <div class="letter-fold-crease letter-fold-crease-top" aria-hidden="true"></div>
+            <div class="letter-fold-crease letter-fold-crease-bottom" aria-hidden="true"></div>
+
+            <!-- Section progress hairline bars -->
+            <div class="letter-section-indicators" id="letter-section-indicators" role="tablist" aria-label="Letter reading sections"></div>
+
+            <!-- Scrollable & Section-navigable Letter Body (Original message only) -->
+            <div id="letter-scroll-viewport" class="letter-scroll-viewport" tabindex="0">
+              <div id="letter-sections-container" class="letter-sections-container"></div>
+            </div>
+
+            <!-- Previous / Next Navigation Bar -->
+            <footer class="letter-controls">
+              <button type="button" id="btn-letter-prev" class="btn-stationery">
+                Previous
+              </button>
+              <span class="letter-status-text" id="letter-status-text">Section 1 of 6</span>
+              <button type="button" id="btn-letter-next" class="btn-stationery btn-stationery-primary">
+                Next
+              </button>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SCENE 5: FINAL MOMENT
+         =================================================================== -->
+    <section id="scene-5" class="scene scene-final" aria-labelledby="final-closing-heading" hidden>
+      <div class="final-layout">
+        <div class="final-copy-block" id="scene-5-copy">
+          <p class="final-reflection">
+            You spend so much time being there for others. I hope you never forget that you deserve someone who shows up for you, too.
+          </p>
+          <div class="final-rule" aria-hidden="true"></div>
+          <h2 id="final-closing-heading" class="final-closing">
+            You deserve your flowers.
+          </h2>
+          <div class="final-actions">
+            <button type="button" id="btn-replay" class="btn-quiet">
+              Experience again
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- GSAP 3.15.1 Core (with automatic native fallback in js/animations.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" defer></script>
+
+  <!-- Modular Application Scripts -->
+  <script src="js/animations.js" defer></script>
+  <script src="js/bouquet.js" defer></script>
+  <script src="js/letter.js" defer></script>
+  <script src="js/scenes.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

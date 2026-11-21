@@ -1,0 +1,328 @@
+/* ==========================================================================
+   Hybrid Multi-Layered Botanical Bouquet & Discovery Panel
+   ========================================================================== */
+
+.bouquet-theater {
+  position: fixed;
+  top: var(--nav-height);
+  bottom: 0;
+  left: max(0px, calc((100vw - var(--container-max)) / 2));
+  width: min(52vw, 40rem);
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem var(--gutter);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.bouquet-theater.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bouquet-theater.is-interactive {
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.bouquet-theater::before {
+  content: '';
+  position: absolute;
+  inset: 12% 14% 8%;
+  background: radial-gradient(ellipse at 50% 56%, rgba(6, 11, 18, 0.55) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bouquet-canvas-mount {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 470px;
+  aspect-ratio: 460 / 560;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+}
+
+.bouquet-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Interactive Flower Targets inside the Bouquet */
+.bouquet-flower-node {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.38s var(--ease-editorial), filter 0.38s var(--ease-editorial);
+}
+
+.bouquet-flower-node:focus-visible .flower-focus-ring {
+  opacity: 1;
+}
+
+.flower-focus-ring {
+  opacity: 0;
+  stroke: var(--color-gold);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  fill: none;
+  transition: opacity 0.3s ease;
+}
+
+.bouquet-theater.is-interactive .bouquet-flower-node:hover .flower-focus-ring {
+  opacity: 0.78;
+}
+
+.bouquet-theater.has-selection .bouquet-flower-node:not(.is-selected) {
+  opacity: 0.68;
+}
+
+.bouquet-theater.has-selection .bouquet-flower-node.is-selected {
+  opacity: 1;
+  filter: drop-shadow(0 0 18px rgba(189, 164, 119, 0.36));
+}
+
+.bouquet-theater.has-selection .bouquet-flower-node.is-selected .flower-focus-ring {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   SCENE 3: FLOWER DISCOVERY LAYOUT & SOLID IVORY EDITORIAL CARD
+   ========================================================================== */
+
+.discovery-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  min-height: calc(100dvh - var(--nav-height) - 3.5rem);
+}
+
+.discovery-panel-column {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  max-width: 34rem;
+}
+
+.discovery-header .handwritten-note {
+  margin-bottom: 0.25rem;
+}
+
+/* Open Botanical Index Tabs (No Boxy Grid) */
+.flower-selector-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  border-bottom: 1px solid var(--color-silver-subtle);
+  padding-bottom: 0.35rem;
+}
+
+.flower-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  padding: 0.4rem 0.15rem;
+  background-color: transparent;
+  color: var(--color-silver);
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -0.42rem;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  text-align: left;
+  transition:
+    color 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.flower-tab::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.82;
+  transition: transform 0.28s var(--ease-editorial), opacity 0.28s ease;
+}
+
+.flower-tab[data-flower-select="hydrangea"]::before {
+  background-image: url('../assets/flowers/blue-hydrangea.svg');
+}
+
+.flower-tab[data-flower-select="rose"]::before {
+  background-image: url('../assets/flowers/white-garden-rose.svg');
+}
+
+.flower-tab[data-flower-select="forgetmenot"]::before {
+  background-image: url('../assets/flowers/forget-me-not.svg');
+}
+
+.flower-tab[data-flower-select="delphinium"]::before {
+  background-image: url('../assets/flowers/blue-delphinium.svg');
+}
+
+.flower-tab:hover::before,
+.flower-tab.is-selected::before {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.flower-tab.is-explored::after {
+  content: '✓';
+  font-size: 0.72rem;
+  color: var(--color-sage);
+}
+
+.flower-tab:hover {
+  color: var(--color-ivory);
+}
+
+.flower-tab.is-selected {
+  color: var(--color-powder);
+  border-bottom-color: var(--color-gold);
+  font-weight: 500;
+}
+
+/* Tactile Warm-Ivory Botanical Specimen Note (Zero Boxiness, Zero Glassmorphism) */
+.flower-meaning-card {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-ivory);
+  background-image: url('../assets/textures/paper-grain.png');
+  background-size: 360px 360px;
+  color: var(--color-ink-dark);
+  border: 1px solid var(--color-ivory-crease);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 12px 12px 12px 2px;
+  padding: clamp(1.5rem, 2.8vw, 2.2rem);
+  box-shadow:
+    var(--shadow-editorial),
+    inset 0 0 0 6px rgba(245, 240, 231, 0.72),
+    inset 0 0 0 7px rgba(189, 164, 119, 0.22);
+}
+
+.card-corner-bloom {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  width: 78px;
+  opacity: 0.28;
+  transform: rotate(16deg);
+  pointer-events: none;
+}
+
+.flower-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.flower-card-meaning-tag {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+}
+
+.flower-card-counter {
+  font-size: 0.78rem;
+  color: var(--color-ink-muted);
+}
+
+.flower-card-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.65rem, 2.4vw, 2.15rem);
+  line-height: 1.15;
+  color: var(--color-ink-dark);
+}
+
+.flower-card-divider {
+  width: 2.75rem;
+  height: 1px;
+  background-color: var(--color-gold);
+  margin: 0.9rem 0 1rem;
+}
+
+.flower-card-message {
+  font-family: var(--font-reading);
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--color-ink-dark);
+}
+
+.discovery-footer-actions {
+  margin-top: 0.35rem;
+}
+
+#btn-to-letter:disabled {
+  opacity: 0.52;
+  cursor: not-allowed;
+  border-color: var(--color-silver-subtle);
+  box-shadow: none;
+  transform: none;
+}
+
+#btn-to-letter:disabled::before {
+  opacity: 0.45;
+  transform: none;
+}
+
+/* Responsive Bouquet Positioning on Tablet & Phone */
+@media (max-width: 900px) {
+  .bouquet-theater {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    height: min(44dvh, 360px);
+    padding: 0.5rem var(--gutter) 0;
+    margin: 0 auto;
+  }
+
+  .bouquet-theater:not(.is-visible) {
+    display: none;
+  }
+
+  .bouquet-canvas-mount {
+    max-width: 300px;
+    height: 100%;
+  }
+
+  .discovery-layout {
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  .discovery-panel-column {
+    grid-column: 1;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 440px) {
+  .flower-selector-bar {
+    grid-template-columns: 1fr;
+  }
+}

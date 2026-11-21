@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none">
+  <defs>
+    <radialGradient id="roseOuterGrad" cx="42%" cy="35%" r="68%">
+      <stop offset="0%" stop-color="#FDFBF7"/>
+      <stop offset="68%" stop-color="#F5F0E7"/>
+      <stop offset="100%" stop-color="#DDD2BE"/>
+    </radialGradient>
+    <radialGradient id="roseMidGrad" cx="45%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#FAF6EE"/>
+      <stop offset="62%" stop-color="#EFE6D6"/>
+      <stop offset="100%" stop-color="#D2C2A6"/>
+    </radialGradient>
+    <radialGradient id="roseHeartGrad" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#DFC89E"/>
+      <stop offset="60%" stop-color="#EADBC0"/>
+      <stop offset="100%" stop-color="#F5F0E7"/>
+    </radialGradient>
+  </defs>
+  <g>
+    <path d="M110 24 C146 22, 178 48, 172 82 C166 106, 134 114, 110 110 C86 114, 54 106, 48 82 C42 48, 74 22, 110 24 Z" fill="url(#roseOuterGrad)" stroke="#D4C7B2" stroke-width="0.8"/>
+    <path d="M188 96 C196 132, 174 168, 140 168 C114 168, 102 138, 106 112 C98 88, 104 54, 128 46 C160 36, 180 62, 188 96 Z" fill="url(#roseOuterGrad)" stroke="#D4C7B2" stroke-width="0.8"/>
+    <path d="M32 98 C24 134, 46 170, 80 170 C106 170, 118 140, 114 114 C122 90, 116 56, 92 48 C60 38, 40 64, 32 98 Z" fill="url(#roseOuterGrad)" stroke="#D4C7B2" stroke-width="0.8"/>
+    <path d="M58 176 C88 198, 134 198, 162 174 C180 156, 164 126, 138 118 C118 112, 102 112, 82 118 C56 126, 40 156, 58 176 Z" fill="url(#roseOuterGrad)" stroke="#D4C7B2" stroke-width="0.8"/>
+  </g>
+  <g>
+    <path d="M110 44 C138 42, 160 64, 152 90 C144 110, 124 114, 110 112 C96 114, 76 110, 68 90 C60 64, 82 42, 110 44 Z" fill="url(#roseMidGrad)" stroke="#CBBCA2" stroke-width="0.8"/>
+    <path d="M164 108 C166 136, 144 158, 118 154 C98 150, 94 128, 102 112 C104 92, 116 74, 136 74 C156 74, 162 88, 164 108 Z" fill="url(#roseMidGrad)" stroke="#CBBCA2" stroke-width="0.8"/>
+    <path d="M56 110 C54 138, 76 160, 102 156 C122 152, 126 130, 118 114 C116 94, 104 76, 84 76 C64 76, 58 90, 56 110 Z" fill="url(#roseMidGrad)" stroke="#CBBCA2" stroke-width="0.8"/>
+  </g>
+  <g>
+    <path d="M110 66 C130 66, 144 82, 138 102 C132 118, 116 122, 110 120 C104 122, 88 118, 82 102 C76 82, 90 66, 110 66 Z" fill="url(#roseHeartGrad)" stroke="#C3B08E" stroke-width="0.8"/>
+    <path d="M90 106 C92 126, 112 136, 128 124 C140 114, 134 94, 118 90 C104 86, 88 92, 90 106 Z" fill="url(#roseHeartGrad)" stroke="#BDA477" stroke-width="0.8"/>
+    <path d="M100 98 C104 88, 120 90, 122 102 C124 112, 110 118, 102 112 C96 108, 97 102, 100 98 Z" fill="#E4CFA9" stroke="#BDA477" stroke-width="0.7"/>
+  </g>
+</svg>

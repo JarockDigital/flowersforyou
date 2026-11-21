@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none">
+  <defs>
+    <radialGradient id="hydPetalLight" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#DCE9F4"/>
+      <stop offset="60%" stop-color="#B8D0E2"/>
+      <stop offset="100%" stop-color="#8BAAC5"/>
+    </radialGradient>
+    <radialGradient id="hydPetalMid" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#C6DAEA"/>
+      <stop offset="65%" stop-color="#9EBAD2"/>
+      <stop offset="100%" stop-color="#6F92B2"/>
+    </radialGradient>
+    <radialGradient id="hydPetalDeep" cx="45%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#A9B9C8"/>
+      <stop offset="70%" stop-color="#7B9AB7"/>
+      <stop offset="100%" stop-color="#537291"/>
+    </radialGradient>
+    <g id="hyd-floret-light">
+      <path d="M0 -3 C-8 -18, -22 -14, -18 -2 C-15 6, -4 4, 0 0 Z" fill="url(#hydPetalLight)" stroke="#7E9EB9" stroke-width="0.6"/>
+      <path d="M0 -3 C8 -18, 22 -14, 18 -2 C15 6, 4 4, 0 0 Z" fill="url(#hydPetalLight)" stroke="#7E9EB9" stroke-width="0.6"/>
+      <path d="M0 3 C-8 18, -22 14, -18 2 C-15 -6, -4 -4, 0 0 Z" fill="url(#hydPetalLight)" stroke="#7E9EB9" stroke-width="0.6"/>
+      <path d="M0 3 C8 18, 22 14, 18 2 C15 -6, 4 -4, 0 0 Z" fill="url(#hydPetalLight)" stroke="#7E9EB9" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="2.5" fill="#BDA477"/>
+    </g>
+    <g id="hyd-floret-mid">
+      <path d="M0 -3 C-8 -18, -22 -14, -18 -2 C-15 6, -4 4, 0 0 Z" fill="url(#hydPetalMid)" stroke="#6283A1" stroke-width="0.6"/>
+      <path d="M0 -3 C8 -18, 22 -14, 18 -2 C15 6, 4 4, 0 0 Z" fill="url(#hydPetalMid)" stroke="#6283A1" stroke-width="0.6"/>
+      <path d="M0 3 C-8 18, -22 14, -18 2 C-15 -6, -4 -4, 0 0 Z" fill="url(#hydPetalMid)" stroke="#6283A1" stroke-width="0.6"/>
+      <path d="M0 3 C8 18, 22 14, 18 2 C15 -6, 4 -4, 0 0 Z" fill="url(#hydPetalMid)" stroke="#6283A1" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="2.4" fill="#F5F0E7"/>
+    </g>
+    <g id="hyd-floret-deep">
+      <path d="M0 -3 C-8 -18, -22 -14, -18 -2 C-15 6, -4 4, 0 0 Z" fill="url(#hydPetalDeep)" stroke="#496784" stroke-width="0.6"/>
+      <path d="M0 -3 C8 -18, 22 -14, 18 -2 C15 6, 4 4, 0 0 Z" fill="url(#hydPetalDeep)" stroke="#496784" stroke-width="0.6"/>
+      <path d="M0 3 C-8 18, -22 14, -18 2 C-15 -6, -4 -4, 0 0 Z" fill="url(#hydPetalDeep)" stroke="#496784" stroke-width="0.6"/>
+      <path d="M0 3 C8 18, 22 14, 18 2 C15 -6, 4 -4, 0 0 Z" fill="url(#hydPetalDeep)" stroke="#496784" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="2.2" fill="#BDA477"/>
+    </g>
+  </defs>
+  <circle cx="110" cy="112" r="76" fill="#3B5773" opacity="0.45"/>
+  <use href="#hyd-floret-deep" transform="translate(62, 74) rotate(-18) scale(1.15)"/>
+  <use href="#hyd-floret-deep" transform="translate(154, 72) rotate(24) scale(1.12)"/>
+  <use href="#hyd-floret-deep" transform="translate(56, 136) rotate(12) scale(1.15)"/>
+  <use href="#hyd-floret-deep" transform="translate(160, 134) rotate(-22) scale(1.12)"/>
+  <use href="#hyd-floret-deep" transform="translate(108, 52) rotate(8) scale(1.1)"/>
+  <use href="#hyd-floret-deep" transform="translate(110, 166) rotate(-14) scale(1.1)"/>
+  <use href="#hyd-floret-mid" transform="translate(80, 96) rotate(16) scale(1.22)"/>
+  <use href="#hyd-floret-mid" transform="translate(138, 94) rotate(-12) scale(1.2)"/>
+  <use href="#hyd-floret-mid" transform="translate(82, 138) rotate(-25) scale(1.18)"/>
+  <use href="#hyd-floret-mid" transform="translate(136, 138) rotate(19) scale(1.18)"/>
+  <use href="#hyd-floret-mid" transform="translate(110, 76) rotate(32) scale(1.16)"/>
+  <use href="#hyd-floret-light" transform="translate(108, 114) rotate(11) scale(1.3)"/>
+  <use href="#hyd-floret-light" transform="translate(74, 116) rotate(-9) scale(1.16)"/>
+  <use href="#hyd-floret-light" transform="translate(142, 116) rotate(27) scale(1.16)"/>
+  <use href="#hyd-floret-light" transform="translate(110, 146) rotate(-6) scale(1.14)"/>
+</svg>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" fill="none">
+  <defs>
+    <radialGradient id="fmnPetal" cx="45%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#E7F1F9"/>
+      <stop offset="55%" stop-color="#B8D0E2"/>
+      <stop offset="100%" stop-color="#83A6C4"/>
+    </radialGradient>
+    <radialGradient id="fmnEye" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F5F0E7"/>
+      <stop offset="58%" stop-color="#BDA477"/>
+      <stop offset="100%" stop-color="#967B4C"/>
+    </radialGradient>
+    <g id="fmn-blossom">
+      <ellipse cx="0" cy="-12" rx="7.5" ry="11" fill="url(#fmnPetal)" stroke="#7B9DBB" stroke-width="0.5"/>
+      <ellipse cx="11.4" cy="-3.7" rx="7.5" ry="11" transform="rotate(72)" fill="url(#fmnPetal)" stroke="#7B9DBB" stroke-width="0.5"/>
+      <ellipse cx="7.1" cy="9.7" rx="7.5" ry="11" transform="rotate(144)" fill="url(#fmnPetal)" stroke="#7B9DBB" stroke-width="0.5"/>
+      <ellipse cx="-7.1" cy="9.7" rx="7.5" ry="11" transform="rotate(216)" fill="url(#fmnPetal)" stroke="#7B9DBB" stroke-width="0.5"/>
+      <ellipse cx="-11.4" cy="-3.7" rx="7.5" ry="11" transform="rotate(288)" fill="url(#fmnPetal)" stroke="#7B9DBB" stroke-width="0.5"/>
+      <circle cx="0" cy="0" r="4.8" fill="url(#fmnEye)"/>
+      <circle cx="0" cy="0" r="2.0" fill="#F5F0E7"/>
+    </g>
+  </defs>
+  <path d="M84 212 C88 164, 96 116, 114 42" stroke="#7A8E7E" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M92 152 C70 132, 52 114, 42 88" stroke="#899B8C" stroke-width="1.7" stroke-linecap="round"/>
+  <path d="M100 120 C124 104, 144 88, 158 66" stroke="#899B8C" stroke-width="1.7" stroke-linecap="round"/>
+  <path d="M90 176 C114 166, 134 156, 148 138" stroke="#899B8C" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M88 182 C66 178, 56 164, 68 156 C78 150, 90 164, 88 182 Z" fill="#899B8C"/>
+  <path d="M98 138 C118 136, 130 124, 120 116 C110 108, 96 122, 98 138 Z" fill="#899B8C"/>
+  <use href="#fmn-blossom" transform="translate(114, 42) scale(1.08)"/>
+  <use href="#fmn-blossom" transform="translate(42, 88) rotate(-15) scale(1.0)"/>
+  <use href="#fmn-blossom" transform="translate(158, 66) rotate(22) scale(0.96)"/>
+  <use href="#fmn-blossom" transform="translate(86, 78) rotate(12) scale(0.92)"/>
+  <use href="#fmn-blossom" transform="translate(132, 102) rotate(-18) scale(0.9)"/>
+  <use href="#fmn-blossom" transform="translate(64, 124) rotate(28) scale(0.86)"/>
+  <use href="#fmn-blossom" transform="translate(148, 138) rotate(-8) scale(0.84)"/>
+</svg>

@@ -1,0 +1,287 @@
+/* ==========================================================================
+   SCENE 4: Warm Ivory Stationery Environment & 3D Folded Letter
+   ========================================================================== */
+
+.letter-environment {
+  max-width: 46rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.letter-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 0 0.25rem;
+}
+
+.btn-text-link {
+  min-height: 44px;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-text-link:hover {
+  color: var(--color-ink-dark);
+  border-bottom-color: var(--color-gold);
+}
+
+.letter-perspective-wrap {
+  perspective: 1400px;
+}
+
+.letter-sheet {
+  position: relative;
+  overflow: hidden;
+  background-color: #FAF6EE;
+  background-image: url('../assets/textures/paper-grain.png');
+  background-size: 420px 420px;
+  color: var(--color-ink-dark);
+  border: 1px solid var(--color-ivory-crease);
+  box-shadow:
+    var(--shadow-stationery),
+    inset 0 0 0 9px rgba(245, 240, 231, 0.72),
+    inset 0 0 0 10px rgba(189, 164, 119, 0.28);
+  border-radius: 10px;
+  padding: clamp(1.5rem, 3.8vw, 3rem);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+}
+
+.letter-corner-flora {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.22;
+}
+
+.letter-corner-flora--tl {
+  top: -10px;
+  left: -10px;
+  width: 82px;
+  transform: rotate(-18deg);
+}
+
+.letter-corner-flora--br {
+  bottom: -12px;
+  right: -12px;
+  width: 88px;
+  transform: rotate(15deg);
+}
+
+/* Subtle horizontal paper fold creases */
+.letter-fold-crease {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(189, 164, 119, 0.28) 18%,
+    rgba(19, 34, 52, 0.08) 50%,
+    rgba(189, 164, 119, 0.28) 82%,
+    transparent 100%
+  );
+}
+
+.letter-fold-crease-top {
+  top: 33.3%;
+}
+
+.letter-fold-crease-bottom {
+  top: 66.6%;
+}
+
+/* Six Section Hairline Progress Tabs */
+.letter-section-indicators {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.letter-pip {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.letter-pip-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-ivory-crease);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.letter-pip.is-active .letter-pip-bar {
+  background-color: var(--color-navy);
+  transform: scaleY(1.5);
+}
+
+.letter-pip.is-visited .letter-pip-bar {
+  background-color: var(--color-gold);
+}
+
+/* Scrollable Reading Viewport */
+.letter-scroll-viewport {
+  max-height: min(56dvh, 470px);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) transparent;
+}
+
+.letter-scroll-viewport::-webkit-scrollbar {
+  width: 5px;
+}
+
+.letter-scroll-viewport::-webkit-scrollbar-thumb {
+  background-color: var(--color-gold-border);
+  border-radius: 3px;
+}
+
+.letter-sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.letter-section-block {
+  max-width: 60ch;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0.45rem 0;
+  transition: opacity 0.35s ease;
+}
+
+/* Focused single-section mode vs full continuous reading mode */
+.letter-sheet:not(.is-full-view) .letter-section-block:not(.is-current-section) {
+  display: none;
+}
+
+.letter-sheet.is-full-view .letter-section-block {
+  display: block;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(189, 164, 119, 0.25);
+}
+
+.letter-sheet.is-full-view .letter-section-block:last-child {
+  border-bottom: none;
+  padding-bottom: 0.25rem;
+}
+
+.letter-paragraph {
+  font-family: var(--font-reading);
+  font-size: clamp(1.04rem, 1.16vw, 1.15rem);
+  line-height: 1.84;
+  color: var(--color-ink-dark);
+  white-space: pre-line;
+}
+
+.letter-paragraph + .letter-paragraph {
+  margin-top: 1.35rem;
+}
+
+/* Previous / Next Stationery Controls */
+.letter-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.85rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-ivory-crease);
+}
+
+.letter-status-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-ink-muted);
+}
+
+.btn-stationery {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.6rem 1.35rem;
+  background-color: transparent;
+  color: var(--color-ink-dark);
+  border: 1px solid var(--color-gold-border);
+  border-radius: 14px 3px 14px 3px;
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition:
+    background-color 0.28s ease,
+    color 0.28s ease,
+    border-color 0.28s ease,
+    opacity 0.28s ease;
+}
+
+.btn-stationery:hover:not(:disabled) {
+  background-color: var(--color-navy);
+  color: var(--color-ivory);
+  border-color: var(--color-navy);
+}
+
+.btn-stationery:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn-stationery-primary {
+  background-color: var(--color-navy);
+  color: var(--color-ivory);
+  border-color: var(--color-navy);
+}
+
+.btn-stationery-primary::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('../assets/flowers/forget-me-not.svg') center / contain no-repeat;
+  transition: transform 0.32s var(--ease-editorial);
+}
+
+.btn-stationery-primary:hover:not(:disabled)::after {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.btn-stationery-primary:hover:not(:disabled) {
+  background-color: var(--color-midnight);
+  border-color: var(--color-midnight);
+}
+
+@media (max-width: 540px) {
+  .letter-controls {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .letter-status-text {
+    order: -1;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.25rem;
+  }
+
+  .btn-stationery {
+    flex: 1;
+  }
+}

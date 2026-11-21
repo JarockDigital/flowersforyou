@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Organic Botanical Micro-Movements & Reduced-Motion Overrides
+   ========================================================================== */
+
+@keyframes floralSwaySlow {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(1.35deg) translateY(-2px);
+  }
+}
+
+@keyframes floralSwayCounter {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(-1.25deg) translateY(-1.5px);
+  }
+}
+
+@keyframes petalBreathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.018);
+  }
+}
+
+@keyframes ribbonDrift {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1.6deg);
+  }
+}
+
+@keyframes sprigRest {
+  0%, 100% {
+    transform: rotate(14deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(15.4deg) translateY(-2.5px);
+  }
+}
+
+.arrival-sprig {
+  animation: sprigRest 8.5s ease-in-out infinite;
+}
+
+.sway-delphinium {
+  transform-box: fill-box;
+  transform-origin: 50% 96%;
+  animation: floralSwaySlow 9.4s ease-in-out infinite;
+}
+
+.sway-hydrangea {
+  transform-box: fill-box;
+  transform-origin: 50% 92%;
+  animation: floralSwayCounter 8.2s ease-in-out infinite;
+}
+
+.sway-rose {
+  transform-box: fill-box;
+  transform-origin: 50% 90%;
+  animation: petalBreathe 7.6s ease-in-out infinite;
+}
+
+.sway-forgetmenot {
+  transform-box: fill-box;
+  transform-origin: 42% 94%;
+  animation: floralSwaySlow 6.8s ease-in-out infinite;
+}
+
+.sway-foliage-left {
+  transform-box: fill-box;
+  transform-origin: 65% 95%;
+  animation: floralSwayCounter 10.2s ease-in-out infinite;
+}
+
+.sway-foliage-right {
+  transform-box: fill-box;
+  transform-origin: 35% 95%;
+  animation: floralSwaySlow 10.8s ease-in-out infinite;
+}
+
+.sway-ribbon-tail {
+  transform-box: fill-box;
+  transform-origin: 50% 5%;
+  animation: ribbonDrift 7.2s ease-in-out infinite;
+}
+
+/* Pause ambient sway while the bouquet reveal timeline animates parent groups */
+.bouquet-theater.is-revealing .sway-delphinium,
+.bouquet-theater.is-revealing .sway-hydrangea,
+.bouquet-theater.is-revealing .sway-rose,
+.bouquet-theater.is-revealing .sway-forgetmenot,
+.bouquet-theater.is-revealing .sway-foliage-left,
+.bouquet-theater.is-revealing .sway-foliage-right,
+.bouquet-theater.is-revealing .sway-ribbon-tail {
+  animation-play-state: paused;
+}
+
+/* Complete Accessibility Honor for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .arrival-sprig,
+  .sway-delphinium,
+  .sway-hydrangea,
+  .sway-rose,
+  .sway-forgetmenot,
+  .sway-foliage-left,
+  .sway-foliage-right,
+  .sway-ribbon-tail {
+    animation: none !important;
+  }
+
+  .btn-editorial,
+  .btn-quiet,
+  .btn-stationery,
+  .envelope-object,
+  .bouquet-flower-node,
+  .chapter-rule,
+  .letter-pip-bar {
+    transition: none !important;
+  }
+}

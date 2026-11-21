@@ -1,0 +1,594 @@
+/* ==========================================================================
+   Main Stage, Lighting Environment & Editorial Controls
+   ========================================================================== */
+
+body {
+  background-color: var(--color-midnight);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  transition: background-color 0.85s var(--ease-editorial), color 0.65s var(--ease-editorial);
+}
+
+body[data-theme="ivory"] {
+  background-color: var(--color-ivory);
+  color: var(--color-ink-dark);
+}
+
+/* Atmospheric Lighting & Texture Layers */
+.environment-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.environment-spotlight {
+  position: absolute;
+  inset: -12%;
+  background:
+    radial-gradient(
+      ellipse 56% 52% at 50% 46%,
+      rgba(23, 45, 67, 0.95) 0%,
+      rgba(16, 28, 44, 0.92) 56%,
+      var(--color-midnight-deep) 100%
+    ),
+    radial-gradient(
+      circle at 38% 36%,
+      rgba(189, 164, 119, 0.11) 0%,
+      transparent 52%
+    );
+  transition: opacity 0.85s var(--ease-editorial);
+}
+
+body[data-theme="ivory"] .environment-spotlight {
+  opacity: 0;
+}
+
+.environment-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/textures/midnight-grain.png');
+  background-repeat: repeat;
+  background-size: 360px 360px;
+  opacity: 0.45;
+  transition: opacity 0.85s var(--ease-editorial), background-image 0.85s ease;
+}
+
+body[data-theme="ivory"] .environment-grain {
+  background-image: url('../assets/textures/paper-grain.png');
+  background-size: 420px 420px;
+  opacity: 0.72;
+}
+
+/* Delicate Botanical Corner Accents on Stage */
+.stage-corner-flora {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.14;
+  transition: opacity 0.85s var(--ease-editorial);
+}
+
+.stage-corner-flora--tl {
+  top: 4.5rem;
+  left: -18px;
+  width: clamp(110px, 14vw, 185px);
+  transform: rotate(16deg);
+}
+
+.stage-corner-flora--br {
+  bottom: -14px;
+  right: -12px;
+  width: clamp(115px, 15vw, 195px);
+  transform: rotate(-18deg);
+}
+
+body[data-theme="ivory"] .stage-corner-flora {
+  opacity: 0.22;
+}
+
+/* Discreet Architectural Scene Navigation */
+.editorial-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gutter);
+}
+
+.chapter-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2.4vw, 2rem);
+}
+
+.chapter-step {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  min-width: 44px;
+  justify-content: center;
+  padding: 0.25rem 0.35rem;
+  color: var(--color-silver);
+  opacity: 0.62;
+  transition: opacity 0.35s ease, color 0.35s ease;
+}
+
+.chapter-step:hover,
+.chapter-step:focus-visible {
+  opacity: 1;
+}
+
+.chapter-step.is-active {
+  opacity: 1;
+  color: var(--color-ivory);
+}
+
+body[data-theme="ivory"] .chapter-step {
+  color: var(--color-ink-muted);
+}
+
+body[data-theme="ivory"] .chapter-step.is-active {
+  color: var(--color-ink-dark);
+}
+
+.chapter-rule {
+  display: block;
+  width: clamp(1.5rem, 4vw, 2.75rem);
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.45;
+  transition: background-color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+}
+
+.chapter-step.is-active .chapter-rule {
+  background-color: var(--color-gold);
+  opacity: 1;
+  transform: scaleY(1.8);
+}
+
+.chapter-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* Main Stage Container */
+.stage {
+  position: relative;
+  z-index: 10;
+  min-height: 100dvh;
+  padding-top: var(--nav-height);
+  display: grid;
+  align-items: center;
+}
+
+.scene {
+  position: relative;
+  z-index: 15;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem) var(--gutter) clamp(2rem, 4vw, 3.25rem);
+}
+
+/* Editorial Typography */
+.handwritten-note {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  color: var(--color-gold);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+.editorial-eyebrow {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 1.9vw, 1.55rem);
+  color: var(--color-powder);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.65rem;
+}
+
+.editorial-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-display);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--color-ivory);
+}
+
+.editorial-heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-heading);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-ivory);
+}
+
+.editorial-subheading {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--text-subheading);
+  line-height: 1.2;
+  color: var(--color-ivory);
+}
+
+.editorial-subcopy {
+  margin-top: 1.15rem;
+  max-width: 44ch;
+  font-size: var(--text-body);
+  line-height: 1.72;
+  color: var(--color-silver);
+}
+
+/* Leaf-Contoured Botanical Buttons with Living Flower Accents */
+.btn-editorial {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 48px;
+  padding: 0.8rem 1.85rem 0.8rem 1.45rem;
+  background-color: var(--color-navy);
+  color: var(--color-ivory);
+  border: 1px solid var(--color-gold-border);
+  border-radius: 20px 3px 20px 3px;
+  font-family: var(--font-serif);
+  font-size: 1.04rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 24px rgba(7, 13, 21, 0.34),
+    inset 0 0 0 3px rgba(189, 164, 119, 0.12);
+  transition:
+    background-color 0.32s var(--ease-editorial),
+    color 0.32s var(--ease-editorial),
+    border-color 0.32s var(--ease-editorial),
+    transform 0.28s var(--ease-editorial);
+}
+
+.btn-editorial::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  background: url('../assets/flowers/forget-me-not.svg') center / contain no-repeat;
+  transition: transform 0.38s var(--ease-editorial);
+}
+
+.btn-editorial:hover {
+  background-color: var(--color-ivory);
+  color: var(--color-midnight);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.btn-editorial:hover::before {
+  transform: rotate(18deg) scale(1.14);
+}
+
+.btn-editorial:active {
+  transform: translateY(0);
+}
+
+.btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.45rem 0.35rem;
+  background-color: transparent;
+  color: var(--color-silver);
+  border: none;
+  border-bottom: 1px solid var(--color-gold-border);
+  border-radius: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-quiet::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url('../assets/flowers/single-sprig.svg') center / contain no-repeat;
+  opacity: 0.85;
+  transition: transform 0.35s var(--ease-editorial), opacity 0.3s ease;
+}
+
+.btn-quiet:hover {
+  color: var(--color-ivory);
+  border-bottom-color: var(--color-powder);
+}
+
+.btn-quiet:hover::before {
+  transform: rotate(-10deg) scale(1.1);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   SCENE 1: THE ARRIVAL (Physical 3D Envelope & Emerging Floral Keepsake)
+   ========================================================================== */
+
+.arrival-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(1.25rem, 2.6vh, 2rem);
+}
+
+.arrival-copy {
+  max-width: 36rem;
+}
+
+.arrival-copy .handwritten-note {
+  margin-bottom: 0.45rem;
+}
+
+.envelope-stage {
+  position: relative;
+  width: min(370px, 84vw);
+  height: min(244px, 56vw);
+  /* Generous top headroom so the unfolded 3D flap rises cleanly in open space */
+  margin: clamp(2.25rem, 5.5vh, 4rem) auto 0.5rem;
+  perspective: 1200px;
+}
+
+.arrival-sprig {
+  position: absolute;
+  right: -28px;
+  top: -36px;
+  width: clamp(92px, 24vw, 128px);
+  z-index: 7;
+  pointer-events: none;
+  transform: rotate(14deg);
+}
+
+.envelope-object {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: var(--shadow-envelope);
+  transform: rotate(-1.5deg);
+  transition: transform 0.45s var(--ease-editorial);
+  will-change: transform, opacity;
+}
+
+.envelope-object.is-opening {
+  transition: none;
+  cursor: default;
+}
+
+.envelope-object:not(.is-opening):hover,
+.envelope-object:not(.is-opening):focus-visible {
+  transform: rotate(0deg) translateY(-3px);
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--color-ivory);
+  background-image: url('../assets/textures/paper-grain.png');
+  background-size: 320px 320px;
+  border: 1px solid var(--color-ivory-crease);
+  border-radius: 3px;
+}
+
+.envelope-inner-liner {
+  position: absolute;
+  inset: 6px;
+  z-index: 1;
+  background-color: var(--color-navy);
+  border: 1px solid rgba(189, 164, 119, 0.42);
+  border-radius: 2px;
+}
+
+/* Floral keepsake tucked inside pocket (z-index 3: behind front pocket 4, in front of opened flap 2) */
+.envelope-emerging-bloom {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  width: 44%;
+  z-index: 3;
+  transform: translate(-50%, 26%) scale(0.84);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.envelope-pocket-left,
+.envelope-pocket-right,
+.envelope-pocket-bottom {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background-image: url('../assets/textures/paper-grain.png');
+  background-size: 320px 320px;
+  pointer-events: none;
+}
+
+.envelope-pocket-left {
+  clip-path: polygon(0 0, 52% 52%, 0 100%);
+  background-color: #EFE8DA;
+}
+
+.envelope-pocket-right {
+  clip-path: polygon(100% 0, 48% 52%, 100% 100%);
+  background-color: #EAE2D2;
+}
+
+.envelope-pocket-bottom {
+  clip-path: polygon(0 100%, 50% 46%, 100% 100%);
+  background-color: var(--color-ivory);
+  border-top: 1px solid var(--color-ivory-crease);
+}
+
+/* True 3D hinged flap (parent is flat so z-index 5 -> 2 swaps cleanly in Safari without 3D clipping) */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56%;
+  transform-origin: 50% 0%;
+  transform-style: preserve-3d;
+  z-index: 5;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.envelope-flap-front,
+.envelope-flap-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.envelope-flap-front {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #F5F0E7 0%, #ECE4D4 82%, #DFD4BF 100%);
+  background-image: url('../assets/textures/paper-grain.png');
+  background-size: 320px 320px;
+}
+
+.envelope-flap-back {
+  /* Tip at top (50% 0%), wide base at bottom (0 100%, 100% 100%) so after flap's rotateX(180deg) it points UP attached at y=0 */
+  clip-path: polygon(0 100%, 100% 100%, 50% 0%);
+  background: linear-gradient(180deg, #EAE1D0 0%, #DFD4BF 100%);
+  background-image: url('../assets/textures/paper-grain.png');
+  background-size: 320px 320px;
+  border-bottom: 1px solid var(--color-ivory-crease);
+  transform: rotateX(180deg);
+}
+
+.wax-seal-wrapper {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: clamp(68px, 18vw, 86px);
+  height: clamp(68px, 18vw, 86px);
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   SCENE 2 & SCENE 5: ASYMMETRIC EDITORIAL LAYOUTS WITH BOUQUET STAGE
+   ========================================================================== */
+
+.bouquet-editorial-layout,
+.final-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  min-height: calc(100dvh - var(--nav-height) - 3.5rem);
+}
+
+.bouquet-copy-block,
+.final-copy-block {
+  grid-column: 2;
+  max-width: 32rem;
+}
+
+.scene-actions,
+.final-actions {
+  margin-top: 2rem;
+}
+
+.final-reflection {
+  font-family: var(--font-serif);
+  font-size: clamp(1.32rem, 2.1vw, 1.75rem);
+  line-height: 1.55;
+  color: var(--color-ivory);
+}
+
+.final-rule {
+  width: 3.5rem;
+  height: 1px;
+  background-color: var(--color-gold);
+  margin: 1.65rem 0;
+}
+
+.final-closing {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.18;
+  color: var(--color-powder);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (Tablet & Mobile Recomposition)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .bouquet-editorial-layout,
+  .final-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(310px, 46dvh) auto;
+    align-content: start;
+    gap: 1.25rem;
+  }
+
+  .bouquet-copy-block,
+  .final-copy-block {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 36rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .editorial-subcopy {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .final-rule {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .chapter-track {
+    gap: 0.45rem;
+  }
+
+  .chapter-label {
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+  }
+
+  .arrival-sprig {
+    right: -12px;
+    top: -26px;
+  }
+}

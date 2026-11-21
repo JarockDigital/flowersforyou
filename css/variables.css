@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Design Tokens, Local Fallbacks & Palette
+   ========================================================================== */
+
+@font-face {
+  font-family: 'EditorialSerifLocal';
+  src: url('../assets/fonts/EditorialSerif-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EditorialSerifLocal';
+  src: url('../assets/fonts/EditorialSerif-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EditorialSerifLocal';
+  src: url('../assets/fonts/EditorialSerif-Bold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EditorialSansLocal';
+  src: url('../assets/fonts/EditorialSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EditorialScriptLocal';
+  src: url('../assets/fonts/EditorialScript-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Core Approved Palette */
+  --color-midnight: #101C2C;
+  --color-navy: #172D43;
+  --color-powder: #B8D0E2;
+  --color-ivory: #F5F0E7;
+  --color-silver: #A9B9C8;
+  --color-sage: #899B8C;
+  --color-gold: #BDA477;
+
+  /* Derived Tonal Values (strictly anchored to the approved palette) */
+  --color-midnight-deep: #0B1420;
+  --color-navy-elevated: #1D3751;
+  --color-ivory-warm: #EDE5D6;
+  --color-ivory-crease: #DFD5C2;
+  --color-ink-dark: #132234;
+  --color-ink-muted: #344B61;
+  --color-gold-soft: rgba(189, 164, 119, 0.34);
+  --color-gold-border: rgba(189, 164, 119, 0.58);
+  --color-silver-subtle: rgba(169, 185, 200, 0.24);
+
+  /* Typography: Warm calligraphic & bookish pairing (Optima, Palatino, Charter, Snell Roundhand) */
+  --font-serif: 'Palatino', 'Book Antiqua', 'EditorialSerifLocal', Georgia, serif;
+  --font-reading: 'Charter', 'Iowan Old Style', 'EditorialSerifLocal', Georgia, serif;
+  --font-sans: 'Optima', 'Avenir Next', 'EditorialSansLocal', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-handwritten: 'Snell Roundhand', 'EditorialScriptLocal', cursive;
+
+  /* Fluid Type Scale */
+  --text-display: clamp(2.25rem, 4.4vw, 3.85rem);
+  --text-heading: clamp(1.85rem, 3.2vw, 2.95rem);
+  --text-subheading: clamp(1.45rem, 2.3vw, 2.05rem);
+  --text-body: clamp(0.975rem, 1.05vw, 1.08rem);
+  --text-small: 0.85rem;
+
+  /* Spacing & Layout */
+  --nav-height: 3.75rem;
+  --container-max: 76rem;
+  --gutter: clamp(1.25rem, 4vw, 3.25rem);
+
+  /* Shadows */
+  --shadow-editorial: 0 22px 54px rgba(7, 13, 21, 0.52);
+  --shadow-envelope: 0 28px 60px rgba(6, 11, 18, 0.65);
+  --shadow-stationery: 0 24px 64px rgba(16, 28, 44, 0.16);
+
+  /* Easing */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-tactile: cubic-bezier(0.25, 0.9, 0.35, 1);
+}
